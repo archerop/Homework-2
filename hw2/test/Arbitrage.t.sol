@@ -79,6 +79,61 @@ contract Arbitrage is Test {
         /**
          * Please add your solution below
          */
+        address[] memory path;
+        path = new address[](2);
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+
+        uint256[] memory amounts = router.swapExactTokensForTokens(
+            5 ether, 0 ether, path, address(arbitrager), block.timestamp
+        );
+        //console2.log("tokenB:%s tokenA:%s %s",tokenB.balanceOf(arbitrager),amounts[1],tokenA.balanceOf(arbitrager));
+
+        path[0] = address(tokenA);
+        path[1] = address(tokenC);
+        tokenA.approve(address(router), amounts[1]);
+        
+        amounts = router.swapExactTokensForTokens(
+            amounts[1], 0 ether, path, address(arbitrager), block.timestamp
+        );
+        //console2.log("tokenA:%s tokenD:%s",tokenA.balanceOf(arbitrager),amounts[1]);
+
+        path[0] = address(tokenC);
+        path[1] = address(tokenE);
+        tokenC.approve(address(router), amounts[1]);
+        
+        amounts = router.swapExactTokensForTokens(
+            amounts[1], 0 ether, path, address(arbitrager), block.timestamp
+        );
+        //console2.log("tokenA:%s tokenD:%s",tokenA.balanceOf(arbitrager),amounts[1]);
+
+        path[0] = address(tokenE);
+        path[1] = address(tokenD);
+        tokenE.approve(address(router), amounts[1]);
+        
+        amounts = router.swapExactTokensForTokens(
+            amounts[1], 0 ether, path, address(arbitrager), block.timestamp
+        );
+        //console2.log("tokenA:%s tokenD:%s",tokenA.balanceOf(arbitrager),amounts[1]);
+
+        path[0] = address(tokenD);
+        path[1] = address(tokenC);
+        tokenD.approve(address(router), amounts[1]);
+                
+        amounts = router.swapExactTokensForTokens(
+            amounts[1], 0 ether, path, address(arbitrager), block.timestamp
+        );
+        //console2.log("tokenD:%s tokenC:%s",tokenD.balanceOf(arbitrager),amounts[1]);
+
+        path[0] = address(tokenC);
+        path[1] = address(tokenB);
+        tokenC.approve(address(router), amounts[1]);
+        
+        amounts = router.swapExactTokensForTokens(
+            amounts[1], 0 ether, path, address(arbitrager), block.timestamp
+        );
+        //console2.log("tokenC:%s tokenB:%s",tokenC.balanceOf(arbitrager),amounts[1]);
+
         /**
          * Please add your solution above
          */
