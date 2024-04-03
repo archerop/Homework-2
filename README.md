@@ -26,9 +26,6 @@ slippage指的是我們交易時的預期價格和實際執行價格之間的差
 假如目前pool中tokenA : tokenB = 1 : 10.(先假設不會有fee)
 假如你想要用10個B來交換A,那麼此時的報價會是你能得到0.5個A(由於x\*y=k,所以1\*10 = 0.5\*20),在你接受swap前,突然有人用2.5個B先swap了0.2個A(0.8\*12.5=10),那麼你接受交易後,就會變成用10個B swap 0.35556個A(0.444444\*22.5=10),因此產生了slippage(預期換到0.5個A最後只換到0.35556個A)
 
-首先在uniswap v2中使用的價格公式是x*y=k.
-slippage指的是當
-
 ## Problem 3
 Please examine the mint function in the UniswapV2Pair contract. Upon initial liquidity minting, a minimum liquidity is subtracted. What is the rationale behind this design?
 
